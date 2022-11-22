@@ -42,7 +42,7 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr,"USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(av[1], "r");
@@ -59,7 +59,7 @@ int main(int ac, char **av)
 			puall = streq(cmd[0], "push");
 			if ((countstr(cmd) != 2 || atoi(cmd[1]) < 0) && puall == 0)
 			{
-				printf("L%d: usage: push integer\n", line_count);
+				fprintf(stderr, "L%d: usage: push integer\n", line_count);
 				exit(EXIT_FAILURE);
 			}
 
@@ -74,6 +74,6 @@ int main(int ac, char **av)
 		fclose(fp);
 		return (0);
 	}
-	printf("Error: Can't open file %s\n", av[1]);
+	fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 	exit(EXIT_FAILURE);
 }

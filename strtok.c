@@ -60,7 +60,7 @@ char **_strtok(char *str)
 	if (strtwo == NULL)
 	{
 		free(strtwo);
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	for (; *str != '\0'; str++)
@@ -78,7 +78,7 @@ char **_strtok(char *str)
 				for (; ind >= 0; ind--)
 					free(strtwo[ind]);
 				free(strtwo);
-				printf("Error: malloc failed\n");
+				fprintf(stderr, "malloc failed\n");
 				exit(EXIT_FAILURE);
 			}
 			len = 0;
