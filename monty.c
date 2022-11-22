@@ -18,6 +18,43 @@ int countstr(char **strs)
 	return (count);
 }
 
+/**
+ * _error - generate error
+ * @str: the string to check
+ * @line_count: current line
+ * @line: string in line
+ * @fp: file pointer
+ * @s: current stack
+ *
+ * Return: void
+ */
+
+void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s)
+{
+	int puall;
+
+	puall = streq(str[0], "push");
+	if (puall == 0 && countstr(str) != 2)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_count);
+		free(line);
+		free_grid(str), fclose(fp);
+		if (s != NULL)
+			free_stack(s);
+		exit(EXIT_FAILURE);
+	}
+
+	if (numcheck(str[1]) == 0)
+	{
+		free(line);
+		free_grid(str), fclose(fp);
+		if (s != NULL)
+			free_stack(s);
+		fprintf(stderr, "L%d: usage: push integer\n", line_count);
+		exit(EXIT_FAILURE);
+	}
+}
+
 
 /**
  * main - entry point to the monty language
@@ -34,7 +71,7 @@ int main(int ac, char **av)
 	FILE *fp;
 	ssize_t char_count;
 	char  *line = NULL, **cmd;
-	int line_count = 1, puall;
+	int line_count = 1;
 	size_t n = 0;
 
 	if (ac != 2)
@@ -50,17 +87,19 @@ int main(int ac, char **av)
 			if (line[char_count - 1] == '\n')
 				line[char_count - 1] = '\0';
 			cmd = _strtok(line);
-			puall = streq(cmd[0], "push");
-			if ((countstr(cmd) != 2 || atoi(cmd[1]) < 0) && puall == 0)
+			if (streq(cmd[0], "push") == 0)
 			{
+				_error(cmd, line_count, line, fp, stack);
+				push(&stack, _atoi(cmd[1]));
+			}
+			else if (streq(cmd[0], "pall") == 0)
+				pall(stack);
+			else
+			{
+				free_grid(cmd), free(line);
 				fprintf(stderr, "L%d: usage: push integer\n", line_count);
 				exit(EXIT_FAILURE);
 			}
-
-			if (streq(cmd[0], "push") == 0)
-				push(&stack, atoi(cmd[1]));
-			if (streq(cmd[0], "pall") == 0)
-				pall(stack);
 			line_count++, free_grid(cmd);
 		}
 		free(line), fclose(fp), free_stack(stack);

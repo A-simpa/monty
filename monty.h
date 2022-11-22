@@ -46,4 +46,12 @@ int streq(char *str1, char *str2);
 void free_grid(char **grid);
 void free_stack(stack_t *head);
 size_t dlistint_len(stack_t *h);
+int digit_count(char *s);
+int pow_10(int n);
+int sign(char *s);
+int _atoi(char *s);
+int _isdigit(char c);
+int numcheck(char *str);
+void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s);
+
 #endif /* main.h */

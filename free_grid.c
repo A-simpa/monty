@@ -3,7 +3,7 @@
 /**
 *free_grid - frees a 2d array
 *@grid: 2d array
-*@height: height
+*
 *Return: void
 */
 
