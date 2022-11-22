@@ -7,11 +7,10 @@
  * Return: the length of the double linked list
  */
 
-size_t pall(const stack_t *h)
+size_t pall(stack_t *h)
 {
 	size_t len = 0;
 
-	line_number = 0;
 	if (h)
 	{
 		do {

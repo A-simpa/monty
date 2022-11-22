@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
  * countstr - counting strings
@@ -40,10 +41,13 @@ int main(int ac, char **av)
 	stack = NULL;
 
 	fp = fopen(av[1], "r");
-	if (fp != NULL)
+	if (fp != NULL && ac != 0)
 	{
-		while ((char_count = getline(&line, &n, fp)) != -1)
+		while (1)
 		{
+			char_count = getline(&line, &n, fp);
+			if (char_count == -1)
+				break;
 			if (line[char_count - 1] == '\n')
 				line[char_count - 1] = '\0';
 			cmd = _strtok(line);
@@ -67,4 +71,3 @@ int main(int ac, char **av)
 	}
 	return (0);
 }
-
