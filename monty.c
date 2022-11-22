@@ -40,8 +40,13 @@ int main(int ac, char **av)
 
 	stack = NULL;
 
+	if (ac != 2)
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 	fp = fopen(av[1], "r");
-	if (fp != NULL && ac != 0)
+	if (fp != NULL)
 	{
 		while (1)
 		{
@@ -67,7 +72,8 @@ int main(int ac, char **av)
 		free(line);
 		free(cmd);
 		fclose(fp);
-
+		return (0);
 	}
-	return (0);
+	printf("Error: Can't open file %s\n", av[1]);
+	exit(EXIT_FAILURE);
 }
