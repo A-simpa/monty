@@ -43,4 +43,7 @@ int in_len(char *str);
 char **_strtok(char *str);
 int countstr(char **strs);
 int streq(char *str1, char *str2);
+void free_grid(char **grid);
+void free_stack(stack_t *head);
+size_t dlistint_len(stack_t *h);
 #endif /* main.h */

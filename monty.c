@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
 
 /**
  * countstr - counting strings
@@ -31,28 +30,23 @@ int countstr(char **strs)
 
 int main(int ac, char **av)
 {
-	stack_t *stack;
+	stack_t *stack = NULL;
 	FILE *fp;
 	ssize_t char_count;
 	char  *line = NULL, **cmd;
 	int line_count = 1, puall;
 	size_t n = 0;
 
-	stack = NULL;
-
 	if (ac != 2)
 	{
-		fprintf(stderr,"USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(av[1], "r");
 	if (fp != NULL)
 	{
-		while (1)
+		while ((char_count = getline(&line, &n, fp)) != -1)
 		{
-			char_count = getline(&line, &n, fp);
-			if (char_count == -1)
-				break;
 			if (line[char_count - 1] == '\n')
 				line[char_count - 1] = '\0';
 			cmd = _strtok(line);
@@ -67,11 +61,9 @@ int main(int ac, char **av)
 				push(&stack, atoi(cmd[1]));
 			if (streq(cmd[0], "pall") == 0)
 				pall(stack);
-			line_count++;
+			line_count++, free_grid(cmd);
 		}
-		free(line);
-		free(cmd);
-		fclose(fp);
+		free(line), fclose(fp), free_stack(stack);
 		return (0);
 	}
 	fprintf(stderr, "Error: Can't open file %s\n", av[1]);

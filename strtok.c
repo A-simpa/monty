@@ -59,8 +59,7 @@ char **_strtok(char *str)
 	strtwo = malloc((sizeof(char *)) * (count_words(str) + 1));
 	if (strtwo == NULL)
 	{
-		free(strtwo);
-		fprintf(stderr, "malloc failed\n");
+		free(strtwo), fprintf(stderr, "malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	for (; *str != '\0'; str++)
@@ -78,7 +77,7 @@ char **_strtok(char *str)
 				for (; ind >= 0; ind--)
 					free(strtwo[ind]);
 				free(strtwo);
-				fprintf(stderr, "malloc failed\n");
+				fprintf(stderr, "malloc failed\n"),
 				exit(EXIT_FAILURE);
 			}
 			len = 0;
