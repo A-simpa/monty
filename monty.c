@@ -97,7 +97,7 @@ int main(int ac, char **av)
 			else
 			{
 				free_grid(cmd), free(line);
-				fprintf(stderr, "L%d: usage: push integer\n", line_count);
+				fprintf(stderr, "L%d: unknown instruction %s", line_count, cmd[0]);
 				exit(EXIT_FAILURE);
 			}
 			line_count++, free_grid(cmd);
