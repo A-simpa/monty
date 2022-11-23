@@ -20,6 +20,7 @@ void pop(stack_t **s, int lc, char **cmd, char *line, FILE *fp)
 		if (stack_len(*s) == 1)
 		{
 			*s = NULL;
+			free(h);
 			return;
 		}
 		*s = (*s)->next;

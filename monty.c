@@ -95,7 +95,8 @@ int main(int ac, char **av)
 				pint(stack, line_count, cmd, line, fp);
 			else if (streq(cmd[0], "pop") == 0)
 				pop(&stack, line_count, cmd, line, fp);
-			_error(cmd, line_count, line, fp, stack);
+			else
+				_error(cmd, line_count, line, fp, stack);
 			line_count++, free_grid(cmd);
 		}
 		free(line), fclose(fp), free_stack(stack);
