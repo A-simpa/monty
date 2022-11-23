@@ -45,20 +45,16 @@ stack_t *add_stack(stack_t **head, unsigned int n)
 
 void push(stack_t **h, char **n_list, int lc, char *line, FILE *fp)
 {
-	int loop = 0;
 	char **list = n_list + 1;
 
-	while (list[loop] != NULL)
+	if (numcheck(list[0]) == 0)
 	{
-		if (numcheck(list[loop]) == 0)
-		{
-			free(line);
-			free_grid(n_list), fclose(fp);
-			if (*h != NULL)
-				free_stack(*h);
-			fprintf(stderr, "L%d: usage: push integer\n", lc);
-			exit(EXIT_FAILURE);
-		}
-		add_stack(h, _atoi(list[loop])), loop++;
+		free(line);
+		free_grid(n_list), fclose(fp);
+		if (*h != NULL)
+			free_stack(*h);
+		fprintf(stderr, "L%d: usage: push integer\n", lc);
+		exit(EXIT_FAILURE);
 	}
+	add_stack(h, _atoi(list[0]));
 }
