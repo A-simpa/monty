@@ -14,7 +14,7 @@ void free_stack(stack_t *head)
 
 	if (head)
 	{
-		count = 0, len = dlistint_len(head) - 1;
+		count = 0, len = stack_len(head) - 1;
 		while (count < len)
 		{
 			h = head;

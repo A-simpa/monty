@@ -31,11 +31,10 @@ int countstr(char **strs)
 
 void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s)
 {
-	int all_y, ush_y, int_y;
+	int all_y, ush_y, int_y, op_y;
 
-	ush_y = streq(str[0], "push");
-	all_y = streq(str[0], "pall");
-	int_y = streq(str[0], "pint");
+	ush_y = streq(str[0], "push"), op_y = streq(str[0], "pop");
+	all_y = streq(str[0], "pall"), int_y = streq(str[0], "pint");
 	if (ush_y == 0 && countstr(str) < 2)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_count);
@@ -44,7 +43,7 @@ void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s)
 			free_stack(s);
 		exit(EXIT_FAILURE);
 	}
-	else if (all_y != 0 && ush_y != 0 && int_y != 0)
+	else if (all_y != 0 && ush_y != 0 && int_y != 0 && op_y != 0)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_count, str[0]);
 		free(line), free_grid(str), fclose(fp);
@@ -94,6 +93,8 @@ int main(int ac, char **av)
 				pall(stack);
 			else if (streq(cmd[0], "pint") == 0)
 				pint(stack, line_count, cmd, line, fp);
+			else if (streq(cmd[0], "pop") == 0)
+				pop(&stack, line_count, cmd, line, fp);
 			_error(cmd, line_count, line, fp, stack);
 			line_count++, free_grid(cmd);
 		}

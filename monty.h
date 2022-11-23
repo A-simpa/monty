@@ -38,6 +38,7 @@ typedef struct instruction_s
 
 void push(stack_t **h, char **num_list, int lc, char *line, FILE *fp);
 void pint(stack_t *h, int lc, char **cmd, char *line, FILE *fp);
+void pop(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 stack_t *add_stack(stack_t **h, unsigned int n);
 size_t pall(stack_t *h);
 int count_words(char *str);
@@ -47,7 +48,7 @@ int countstr(char **strs);
 int streq(char *str1, char *str2);
 void free_grid(char **grid);
 void free_stack(stack_t *head);
-size_t dlistint_len(stack_t *h);
+size_t stack_len(stack_t *h);
 int digit_count(char *s);
 int pow_10(int n);
 int sign(char *s);
@@ -55,5 +56,5 @@ int _atoi(char *s);
 int _isdigit(char c);
 int numcheck(char *str);
 void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s);
-
+void command_exec(stack_t *s, int lc, char *line, char **cmd, FILE *fp);
 #endif /* main.h */
