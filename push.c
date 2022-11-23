@@ -47,6 +47,7 @@ void push(stack_t **h, char **n_list, int lc, char *line, FILE *fp)
 {
 	char **list = n_list + 1;
 
+	_error(n_list, lc, line, fp, *h);
 	if (numcheck(list[0]) == 0)
 	{
 		free(line);
