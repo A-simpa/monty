@@ -43,8 +43,15 @@ void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s)
 			free_stack(s);
 		exit(EXIT_FAILURE);
 	}
-
-	if (numcheck(str[1]) == 0)
+	else if (puall != 0 && streq(str[0], "pall") != 0)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_count, str[0]);
+		free(line), free_grid(str), fclose(fp);
+		if (s != NULL)
+			free_stack(s);
+		exit(EXIT_FAILURE);
+	}
+	else if (numcheck(str[1]) == 0)
 	{
 		free(line);
 		free_grid(str), fclose(fp);
@@ -84,22 +91,18 @@ int main(int ac, char **av)
 	{
 		while ((char_count = getline(&line, &n, fp)) != -1)
 		{
-			if (line[char_count - 1] == '\n')
-				line[char_count - 1] = '\0';
+			if (*line == '\n' && ++line_count)
+				continue;
+			line[char_count - 1] = '\0';
 			cmd = _strtok(line);
+			if (countstr(cmd) == 0 && ++line_count)
+				continue;
 			if (streq(cmd[0], "push") == 0)
-			{
-				_error(cmd, line_count, line, fp, stack);
-				push(&stack, _atoi(cmd[1]));
-			}
+				_error(cmd, line_count, line, fp, stack), push(&stack, _atoi(cmd[1]));
 			else if (streq(cmd[0], "pall") == 0)
 				pall(stack);
 			else
-			{
-				free_grid(cmd), free(line);
-				fprintf(stderr, "L%d: unknown instruction %s", line_count, cmd[0]);
-				exit(EXIT_FAILURE);
-			}
+				_error(cmd, line_count, line, fp, stack);
 			line_count++, free_grid(cmd);
 		}
 		free(line), fclose(fp), free_stack(stack);

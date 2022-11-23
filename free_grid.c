@@ -9,15 +9,15 @@
 
 void free_grid(char **grid)
 {
-int k = 0;
+	int k = 0;
 
-int height = countstr(grid);
+	int height = countstr(grid);
 
-while (k < height)
-{
-	free(grid[k]);
-	k++;
-}
-free(grid);
+	while (k < height)
+	{
+		free(grid[k]);
+		k++;
+	}
+	free(grid);
 }
 
