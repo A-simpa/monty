@@ -36,7 +36,8 @@ typedef struct instruction_s
 } instruction_t;
 
 
-stack_t *push(stack_t **head, unsigned int n);
+void push(stack_t **h, char **num_list, int lc, char *line, FILE *fp);
+stack_t *add_stack(stack_t **h, unsigned int n);
 size_t pall(stack_t *h);
 int count_words(char *str);
 int in_len(char *str);

@@ -1,14 +1,14 @@
 #include "monty.h"
 
 /**
- * push - add an integer to the begining
+ * add_stack - add an integer to the begining
  * @n: the integer to add at the front
  * @head: pointer to the head of the dlist
  *
  * Return: the address of the new int
  */
 
-stack_t *push(stack_t **head, unsigned int n)
+stack_t *add_stack(stack_t **head, unsigned int n)
 {
 	stack_t *new;
 
@@ -31,3 +31,34 @@ stack_t *push(stack_t **head, unsigned int n)
 	return (new);
 }
 
+/**
+ * push - add an integer to the begining
+ * @n_list: the list of command
+ * @h: pointer to the head of the dlist
+ * @lc: line count
+ * @line: current line
+ * @fp: file pointer
+ *
+ * Return: the address of the new int
+ */
+
+
+void push(stack_t **h, char **n_list, int lc, char *line, FILE *fp)
+{
+	int loop = 0;
+	char **list = n_list + 1;
+
+	while (list[loop] != NULL)
+	{
+		if (numcheck(list[loop]) == 0)
+		{
+			free(line);
+			free_grid(n_list), fclose(fp);
+			if (*h != NULL)
+				free_stack(*h);
+			fprintf(stderr, "L%d: usage: push integer\n", lc);
+			exit(EXIT_FAILURE);
+		}
+		add_stack(h, _atoi(list[loop])), loop++;
+	}
+}
