@@ -59,6 +59,8 @@ int cmd_exec(FILE *fp)
 			sub(&stack, line_count, cmd, line, fp);
 		else if (streq(cmd[0], "div") == 0)
 			divs(&stack, line_count, cmd, line, fp);
+		else if (streq(cmd[0], "mul") == 0)
+			muls(&stack, line_count, cmd, line, fp);
 		else
 			_error(cmd, line_count, line, fp, stack);
 		line_count++, free_grid(cmd);
