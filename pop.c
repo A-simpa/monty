@@ -8,7 +8,7 @@
  * @line: the current
  * @fp: the file pointer
  *
- *Return: return 1 sucess and -1 failure
+ * Return: void
  */
 
 void pop(stack_t **s, int lc, char **cmd, char *line, FILE *fp)

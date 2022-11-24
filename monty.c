@@ -53,6 +53,8 @@ int cmd_exec(FILE *fp)
 			pop(&stack, line_count, cmd, line, fp);
 		else if (streq(cmd[0], "swap") == 0)
 			swap(&stack, line_count, cmd, line, fp);
+		else if (streq(cmd[0], "add") == 0)
+			add(&stack, line_count, cmd, line, fp);
 		else
 			_error(cmd, line_count, line, fp, stack);
 		line_count++, free_grid(cmd);
