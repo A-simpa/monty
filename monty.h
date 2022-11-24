@@ -41,6 +41,7 @@ void pint(stack_t *h, int lc, char **cmd, char *line, FILE *fp);
 void pop(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void swap(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void add(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
+void sub(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 stack_t *add_stack(stack_t **h, unsigned int n);
 size_t pall(stack_t *h);
 int count_words(char *str);
