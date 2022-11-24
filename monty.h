@@ -56,5 +56,5 @@ int _atoi(char *s);
 int _isdigit(char c);
 int numcheck(char *str);
 void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s);
-void command_exec(stack_t *s, int lc, char *line, char **cmd, FILE *fp);
+int cmd_exec(FILE *fp);
 #endif /* main.h */
