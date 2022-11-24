@@ -44,6 +44,7 @@ void add(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void sub(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void divs(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void muls(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
+void mods(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 stack_t *add_stack(stack_t **h, unsigned int n);
 size_t pall(stack_t *h);
 int count_words(char *str);
@@ -62,4 +63,5 @@ int _isdigit(char c);
 int numcheck(char *str);
 void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s);
 int cmd_exec(FILE *fp);
+void run_func(stack_t *stack, char **cmd, int lc, char *line, FILE *fp);
 #endif /* main.h */

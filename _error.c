@@ -24,7 +24,7 @@ void _error(char **str, int line_count, char *line, FILE *fp, stack_t *s)
 			free_stack(s);
 		exit(EXIT_FAILURE);
 	}
-	else if (ush_y != 0 && nop_y != 0)
+	else if (ush_y != 0 && nop_y != 0 && str[0][0] != '#')
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_count, str[0]);
 		free(line), free_grid(str), fclose(fp);

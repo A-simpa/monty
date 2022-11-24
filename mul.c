@@ -26,7 +26,7 @@ void muls(stack_t **s, int lc, char **cmd, char *line, FILE *fp)
 		add_stack(s, sum);
 		return;
 	}
-	fprintf(stderr, "L%d: can't sub, stack too short\n", lc);
+	fprintf(stderr, "L%d: can't mul, stack too short\n", lc);
 	free(line), free_grid(cmd), free_stack(*s), fclose(fp);
 	exit(EXIT_FAILURE);
 }
