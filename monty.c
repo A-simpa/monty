@@ -63,6 +63,8 @@ int cmd_exec(FILE *fp)
 			muls(&stack, line_count, cmd, line, fp);
 		else if (streq(cmd[0], "mod") == 0)
 			mods(&stack, line_count, cmd, line, fp);
+		else if (streq(cmd[0], "pchar") == 0)
+			pchar(stack, line_count, cmd, line, fp);
 		else
 			_error(cmd, line_count, line, fp, stack);
 		line_count++, free_grid(cmd);
