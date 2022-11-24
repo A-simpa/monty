@@ -15,11 +15,13 @@ void pstr(stack_t *head)
 	{
 		do {
 			if ((h->n) > 0 && (h->n) <= 127)
-				printf("%c\n", h->n);
+				printf("%c", h->n);
 			else
+			{
+				printf("\n");
 				return;
+			}
 		} while ((h = h->next) != NULL);
-		return;
 	}
 	printf("\n");
 }
