@@ -47,6 +47,8 @@ void muls(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void mods(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void pchar(stack_t *h, int lc, char **cmd, char *line, FILE *fp);
 void pstr(stack_t *head);
+void rotl(stack_t **s);
+void stack_end(stack_t **head, stack_t *h);
 stack_t *add_stack(stack_t **h, unsigned int n);
 size_t pall(stack_t *h);
 int count_words(char *str);
