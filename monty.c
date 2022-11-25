@@ -30,7 +30,7 @@ int cmd_exec(FILE *fp)
 	stack_t *stack = NULL;
 	ssize_t char_count;
 	char  *line = NULL, **cmd;
-	int line_count = 1;
+	int line_count = 1, queue;
 	size_t n = 0;
 
 	while ((char_count = getline(&line, &n, fp)) != -1)
@@ -44,7 +44,7 @@ int cmd_exec(FILE *fp)
 			continue;
 		}
 		if (streq(cmd[0], "push") == 0)
-			push(&stack, cmd, line_count, line, fp);
+			push(&stack, cmd, line_count, line, fp, queue);
 		else if (streq(cmd[0], "pall") == 0)
 			pall(stack);
 		else if (streq(cmd[0], "pint") == 0)
@@ -71,6 +71,10 @@ int cmd_exec(FILE *fp)
 			rotl(&stack);
 		else if (streq(cmd[0], "rotr") == 0)
 			rotr(&stack);
+		else if (streq(cmd[0], "stack") == 0)
+			queue = 0;
+		else if (streq(cmd[0], "queue") == 0)
+			queue = 1;
 		else
 			_error(cmd, line_count, line, fp, stack);
 		line_count++, free_grid(cmd);

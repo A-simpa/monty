@@ -36,7 +36,7 @@ typedef struct instruction_s
 } instruction_t;
 
 
-void push(stack_t **h, char **num_list, int lc, char *line, FILE *fp);
+void push(stack_t **h, char **num_list, int lc, char *line, FILE *fp, int q);
 void pint(stack_t *h, int lc, char **cmd, char *line, FILE *fp);
 void pop(stack_t **s, int lc, char **cmd, char *line, FILE *fp);
 void swap(stack_t **s, int lc, char **cmd, char *line, FILE *fp);

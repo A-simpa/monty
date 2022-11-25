@@ -43,19 +43,33 @@ stack_t *add_stack(stack_t **head, unsigned int n)
  */
 
 
-void push(stack_t **h, char **n_list, int lc, char *line, FILE *fp)
+void push(stack_t **h, char **cmd, int lc, char *line, FILE *fp, int q)
 {
-	char **list = n_list + 1;
+	char **list = cmd + 1;
+	stack_t *up;
 
-	_error(n_list, lc, line, fp, *h);
+	_error(cmd, lc, line, fp, *h);
 	if (numcheck(list[0]) == 0)
 	{
 		free(line);
-		free_grid(n_list), fclose(fp);
+		free_grid(cmd), fclose(fp);
 		if (*h != NULL)
 			free_stack(*h);
 		fprintf(stderr, "L%d: usage: push integer\n", lc);
 		exit(EXIT_FAILURE);
 	}
-	add_stack(h, _atoi(list[0]));
+	if (q == 0)
+		add_stack(h, _atoi(list[0]));
+	else if (q == 1)
+	{
+		up = malloc(sizeof(stack_t));
+		if (up == NULL)
+		{
+			free(up);
+			fprintf(stderr, "malloc failed\n");
+			exit(EXIT_FAILURE);
+		}
+		up->n = _atoi(list[0]);
+		stack_end(h, up);
+	}
 }
