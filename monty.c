@@ -69,6 +69,8 @@ int cmd_exec(FILE *fp)
 			pstr(stack);
 		else if (streq(cmd[0], "rotl") == 0)
 			rotl(&stack);
+		else if (streq(cmd[0], "rotr") == 0)
+			rotr(&stack);
 		else
 			_error(cmd, line_count, line, fp, stack);
 		line_count++, free_grid(cmd);

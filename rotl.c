@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * pop - delete desired node
+ * rotl - delete desired node
  * @s: the pointer to the first head
  *
  * Return: void
