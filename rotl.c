@@ -14,11 +14,7 @@ void rotl(stack_t **s)
 	if (*s != NULL)
 	{
 		if (stack_len(*s) == 1)
-		{
-			*s = NULL;
-			free(h);
 			return;
-		}
 		*s = (*s)->next;
 		(*s)->prev = NULL;
 		stack_end(s, h);
