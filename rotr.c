@@ -12,7 +12,7 @@ void rotr(stack_t **head)
 	size_t i = 0;
 	size_t len = stack_len(*head);
 
-	if (head)
+	if (head != NULL)
 	{
 		while (i < len - 1)
 		{
